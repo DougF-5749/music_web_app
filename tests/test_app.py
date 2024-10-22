@@ -1,6 +1,6 @@
 from lib.database_connection import get_flask_database_connection
 from lib.album_repository import AlbumRepository
-from flask import request
+from flask import Flask, request
 
 """
 GET /emoji
@@ -19,12 +19,12 @@ def test_post_album(web_client, db_connection):
         'artist_id': 2
     })
     assert response.status_code == 200
-    assert response.data.decode('utf-8') == "The album Back in Black (1980) was successfully add"
+    assert response.data.decode('utf-8') == "Album successfully added!"
 
-    response2 = web_client.get('/albums')
+    response = web_client.get('/albums')
 
-    assert response2.status_code == 200
-    assert response2.data.decode('utf-8') == "" \
+    assert response.status_code == 200
+    assert response.data.decode('utf-8') == "" \
         "Album(1, Surface Sounds, 2021, 1)\n" \
         "Album(2, A/B, 2016, 1)\n" \
         "Album(3, Back in Black, 1980, 2)"

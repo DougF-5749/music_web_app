@@ -19,6 +19,22 @@ app = Flask(__name__)
 def get_emoji():
     return ":)"
 
+@app.route('/albums', methods=['POST'])
+def post_album():
+    connection = get_flask_database_connection(app)
+    repository = AlbumRepository(connection)
+    album = Album(None, "Back in Black", 1980, 2)
+    album = repository.create(album)
+    return "Album successfully added!"
+
+@app.route('/albums')
+def get_all_albums():
+    connection = get_flask_database_connection(app)
+    repository = AlbumRepository(connection)
+    return "\n".join([
+            str(album) for album in repository.all()
+        ])
+
 # == End Example Code ==
 
 # These lines start the server if you run this file directly
