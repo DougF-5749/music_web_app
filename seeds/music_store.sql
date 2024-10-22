@@ -17,7 +17,7 @@ CREATE SEQUENCE IF NOT EXISTS albums_id_seq;
 CREATE TABLE artists (
     id SERIAL PRIMARY KEY,
     name text,
-    genre text,
+    genre text
 );
 
 -- Finally, we add any records that are needed for the tests to run
