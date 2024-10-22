@@ -1,25 +1,30 @@
 
 # {{ NAME }} Route Design Recipe
+```python
+# Request:
+POST /albums
 
-_Copy this design recipe template to test-drive a plain-text Flask route._
+# With body parameters:
+title=Voyage
+release_year=2022
+artist_id=2
+
+# Expected response (200 OK)
+(No content)
+"""
+```
 
 ## 1. Design the Route Signature
 
 _Include the HTTP method, the path, and any query or body parameters._
 
 ```
-# EXAMPLE
+POST /albums
+name: string
+    title: string
+    release_year: int
+    artist_id: int
 
-# Home route
-GET /home
-
-# Waving route
-GET /wave?name=
-
-# Submit message route
-POST /submit
-  name: string
-  message: string
 ```
 
 ## 2. Create Examples as Tests
@@ -31,40 +36,25 @@ _Remember to try out different parameter values._
 _Include the status code and the response body._
 
 ```python
-# EXAMPLE
 
-# GET /home
-#  Expected response (200 OK):
-"""
-This is my home page!
-"""
-
-# GET /wave?name=Leo
-#  Expected response (200 OK):
-"""
-I am waving at Leo
-"""
-
-# GET /wave
-#  Expected response (200 OK):
-"""
-I am waving at no one!
-"""
-
-# POST /submit
+# POST /albums
 #  Parameters:
-#    name: Leo
-#    message: Hello world
+#    name: BAck in Black
+#    release_year: 1980
 #  Expected response (200 OK):
 """
-Thanks Leo, you sent this message: "Hello world"
+"The album Back in Black (1980) was successfully added"
 """
 
-# POST /submit
-#  Parameters: none
-#  Expected response (400 Bad Request):
+# POST /albums
+#  Parameters:
+#    name: BAck in Black
+#    release_year: 1980
+#  Expected response (200 OK):
 """
-Please provide a name and a message
+"The album Back in Black (1980) was successfully added"
+"""
+
 """
 ```
 
